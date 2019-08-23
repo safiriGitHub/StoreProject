@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 public class EncodingFilter implements Filter {
 
 	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -29,7 +28,6 @@ public class EncodingFilter implements Filter {
 		//1.强转
 		HttpServletRequest request=(HttpServletRequest) req;
 		HttpServletResponse response=(HttpServletResponse) resp;
-		//System.out.println("@@@@@@@@@@@@@@@@@@");		
 		//2.放行
 		chain.doFilter(new MyRequest(request), response);
 	}
@@ -41,12 +39,13 @@ public class EncodingFilter implements Filter {
 
 }
 
-//之前的MyRequest增强了request.getParameter("name");方法
+//MyRequest增强了request.getParameter("name");方法
 //增强了所有的获取参数的方法request.getParameterValues("name");
 //增强了所有的获取参数的方法request.getParameterMap();
 class MyRequest extends HttpServletRequestWrapper{
+	
 	private HttpServletRequest request;
-	private boolean flag=true;
+	private boolean encoded=false;
 	
 	
 	public MyRequest(HttpServletRequest request) {
@@ -100,12 +99,11 @@ class MyRequest extends HttpServletRequestWrapper{
 				request.setCharacterEncoding("utf-8");
 				return request.getParameterMap();
 			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else if("get".equalsIgnoreCase(method)){
 			Map<String,String[]> map = request.getParameterMap();
-			if(flag){
+			if(encoded){
 				for (String key:map.keySet()) {
 					String[] arr = map.get(key);
 					//继续遍历数组
@@ -118,7 +116,7 @@ class MyRequest extends HttpServletRequestWrapper{
 						}
 					}
 				}
-				flag=false;
+				encoded=false;
 			}
 			//需要遍历map 修改value的每一个数据的编码
 			
