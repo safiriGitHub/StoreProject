@@ -4,7 +4,7 @@
 	<!-- default-config 默认的配置，  -->
   <default-config>
     <property name="driverClass">com.mysql.jdbc.Driver</property>
-    <property name="jdbcUrl">jdbc:mysql://192.168.1.179:3306/store</property>
+    <property name="jdbcUrl">jdbc:mysql://192.168.1.179:3306/store?useUnicode=true&amp;characterEncoding=utf-8</property>
     <property name="user">safiri</property>
     <property name="password">daka123</property>
     
@@ -14,6 +14,12 @@
     <property name="maxPoolSize">100</property>
     <property name="minPoolSize">10</property>
     <property name="maxStatements">200</property>
+    <property name="dbProperties">
+    <props>
+        <prop key="useUnicode">yes</prop>
+        <prop key="characterEncoding">utf8</prop>
+    </props>
+  	</property>
   </default-config>
   
    <!-- This app is massive! -->

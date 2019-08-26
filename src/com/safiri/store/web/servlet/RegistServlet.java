@@ -1,21 +1,21 @@
 package com.safiri.store.web.servlet;
 
 import com.safiri.store.domain.User;
+import com.safiri.store.service.UserService;
+import com.safiri.store.service.Impl.UserServiceImpl;
 import com.safiri.store.utils.MyBeanUtils;
+import com.safiri.store.utils.UUIDUtils;
 import com.safiri.store.web.base.BaseServlet;
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.sql.SQLException;
+import java.util.UUID;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class RegistServlet extends BaseServlet {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	public String registUI(HttpServletRequest request, HttpServletResponse response) {
 		return "/jsp/register.jsp";
 	}
@@ -44,7 +44,23 @@ public class RegistServlet extends BaseServlet {
 //		}
 		
 		User user = MyBeanUtils.populate(User.class, request.getParameterMap());
-		return "";
+		user.setUid(UUIDUtils.getUUID());
+		user.setState("0");
+		user.setCode(UUIDUtils.getUUID());
+		UserService service = new UserServiceImpl();
+		boolean success = false;
+		try {
+			success = service.registUser(user);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		if (success) {
+			request.setAttribute("msg", "注册成功，请在填写的邮箱中访问激活链接进行激活");
+		} else {
+			request.setAttribute("msg", "注册失败，请重试");
+		}
+		return "/jsp/login.jsp";
 	}
 	
 

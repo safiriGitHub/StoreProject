@@ -112,8 +112,10 @@ font {
 	<div class="col-md-5">
 				<div style="width:440px;border:1px solid #E7E7E7;padding:20px 0 20px 30px;border-radius:5px;margin-top:60px;background:#fff;">
 				<font>会员登录</font>USER LOGIN
-
-				<div>&nbsp;</div>
+				
+				<div>
+					<font style="color: #f00"> ${msg } </font>
+				</div>
 <form class="form-horizontal">
   
  <div class="form-group">

@@ -152,11 +152,19 @@ font {
 			  <input type="radio" name="sex" id="inlineRadio2" value="女"> 女
 			</label>
 			</div>
-			  </div>		
+			  </div>	
+			  	
 			  <div class="form-group">
 			    <label for="date" class="col-sm-2 control-label">出生日期</label>
 			    <div class="col-sm-6">
 			      <input type="date" name="birthday" class="form-control"  >		      
+			    </div>
+			  </div>
+			  
+			  <div class="form-group">
+			    <label for="date" class="col-sm-2 control-label">手机号码</label>
+			    <div class="col-sm-6">
+			      <input type="date" name="telephone" class="form-control"  >		      
 			    </div>
 			  </div>
 			  
