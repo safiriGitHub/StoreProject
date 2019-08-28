@@ -3,6 +3,7 @@ package com.safiri.store.dao.Impl;
 import java.sql.SQLException;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 
 import com.safiri.store.dao.UserDao;
 import com.safiri.store.domain.User;
@@ -19,6 +20,14 @@ public class UserDaoImpl implements UserDao {
 				user.getName(),user.getEmail(),user.getTelephone(),
 				user.getBirthday(),user.getSex(),user.getState(),user.getCode()};
 		return runner.update(sql, params);
+	}
+
+	public User loginUser(String username, String password) throws SQLException {
+		
+		String sql = "select * from user where username=? and password=?";
+		QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
+		return runner.query(sql, new BeanHandler<User>(User.class), username, password);
+		
 	}
 
 }

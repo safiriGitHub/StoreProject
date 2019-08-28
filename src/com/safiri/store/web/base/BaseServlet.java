@@ -31,6 +31,7 @@ public class BaseServlet extends HttpServlet {
 			}
 		} catch (Exception e) {
 			//异常处理：根据不同的异常，进行不同的处理
+			// 跳转到项目特定的异常页面？？？
 			throw new RuntimeException(e);
 		}
 		

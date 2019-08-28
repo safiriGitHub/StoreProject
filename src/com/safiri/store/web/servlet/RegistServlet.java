@@ -7,7 +7,6 @@ import com.safiri.store.utils.MyBeanUtils;
 import com.safiri.store.utils.UUIDUtils;
 import com.safiri.store.web.base.BaseServlet;
 import java.sql.SQLException;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +17,10 @@ public class RegistServlet extends BaseServlet {
 	
 	public String registUI(HttpServletRequest request, HttpServletResponse response) {
 		return "/jsp/register.jsp";
+	}
+	
+	public String loginUI(HttpServletRequest request, HttpServletResponse response) {
+		return "/jsp/login.jsp";
 	}
 	
 	public String registUser(HttpServletRequest request, HttpServletResponse response) {

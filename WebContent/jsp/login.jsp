@@ -116,18 +116,18 @@ font {
 				<div>
 					<font style="color: #f00"> ${msg } </font>
 				</div>
-<form class="form-horizontal">
+<form class="form-horizontal" action="${pageContext.request.contextPath}/UserServlet?method=login" method="post">
   
  <div class="form-group">
     <label for="username" class="col-sm-2 control-label">用户名</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="username" placeholder="请输入用户名">
+      <input name="username" type="text" class="form-control" id="username" placeholder="请输入用户名">
     </div>
   </div>
    <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
     <div class="col-sm-6">
-      <input type="password" class="form-control" id="inputPassword3" placeholder="请输入密码">
+      <input name="password" type="password" class="form-control" id="inputPassword3" placeholder="请输入密码">
     </div>
   </div>
    <div class="form-group">

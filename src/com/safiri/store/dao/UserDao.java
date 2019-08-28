@@ -7,5 +7,7 @@ import com.safiri.store.domain.User;
 public interface UserDao {
 
 	int registUser(User user) throws SQLException;
-
+	
+	User loginUser(String username, String password) throws SQLException;
+	
 }
