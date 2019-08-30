@@ -24,6 +24,7 @@ public class UserServlet extends BaseServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String autoLogin = request.getParameter("autoLogin");
+		String rememberName = request.getParameter("rememberName");
 		
 		if (!StringUtils.areNotEmpty(username, password)) {
 			request.setAttribute("msg", "用户名或密码不能为空");
@@ -37,11 +38,18 @@ public class UserServlet extends BaseServlet {
 			User user = (User)map.get("user");
 			request.getSession().setAttribute("loginUser", user);
 			if ("1".equals(autoLogin)) { //如果选择了自动登录，则发送cookie
-				Cookie autoLoginCookie = CookieUtils.createCustomizeCookie("autoLoginCookie", user.getName()+"@"+user.getPassword());
+				Cookie autoLoginCookie = CookieUtils.createCustomizeCookie("autoLoginCookie", user.getUsername()+"@"+user.getPassword());
 				response.addCookie(autoLoginCookie);
 			}else {
 				Cookie autoLoginCookie = CookieUtils.createCustomizeCookie("autoLoginCookie", "");
 				response.addCookie(autoLoginCookie);
+			}
+			if ("1".equals(rememberName)) { //如果选择了记住用户名，则发送cookie
+				Cookie rememberCookie = CookieUtils.createCustomizeCookie("rememberCookie", user.getUsername());
+				response.addCookie(rememberCookie);
+			}else {
+				Cookie rememberCookie = CookieUtils.createCustomizeCookie("rememberCookie", "");
+				response.addCookie(rememberCookie);
 			}
 			response.sendRedirect(request.getContextPath() + "/");
 		}else {
