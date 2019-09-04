@@ -29,16 +29,7 @@
 				</div>
 				<div class="col-md-3" style="padding-top:20px">
 					<ol class="list-inline">
-						<c:if test="${empty loginUser }">
-							<li><a href="${pageContext.request.contextPath}/RegistServlet?method=loginUI">登录</a></li>
-							<li><a href="${pageContext.request.contextPath}/RegistServlet?method=registUI">注册</a></li>
-						</c:if>
-						<c:if test="${not empty loginUser }">
-							欢迎您：${loginUser.username }
-							<li><a href="${pageContext.request.contextPath}/jsp/order_list.jsp">我的订单</a></li>
-							<li><a href="${pageContext.request.contextPath}/UserServlet?method=logout">退出</a></li>
-						</c:if>
-						<li><a href="${pageContext.request.contextPath}/jsp/cart.jsp">购物车</a></li>
+						<%@include file="/jsp/header.jsp" %>
 						
 					</ol>
 				</div>
@@ -57,7 +48,7 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand" href="#">首页</a>
+							<a class="navbar-brand" href="${pageContext.request.contextPath}">首页</a>
 						</div>
 
 						<!-- Collect the nav links, forms, and other content for toggling -->

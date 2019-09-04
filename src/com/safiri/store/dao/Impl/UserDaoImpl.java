@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.safiri.store.dao.UserDao;
 import com.safiri.store.domain.User;
@@ -28,6 +29,13 @@ public class UserDaoImpl implements UserDao {
 		QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
 		return runner.query(sql, new BeanHandler<User>(User.class), username, password);
 		
+	}
+
+	@Override
+	public int findUserExist(String username) throws SQLException {
+		String sql = "select count(*) from user where username=?";
+		QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
+		return (int) runner.query(sql, new ScalarHandler(), username);
 	}
 
 }

@@ -68,4 +68,15 @@ public class UserServlet extends BaseServlet {
 		response.sendRedirect(request.getContextPath() + "/RegistServlet?method=loginUI");
 		return null;
 	}
+	
+	public String checkUsername(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		String uname = request.getParameter("username");
+		UserService service = new UserServiceImpl();
+		int num = service.findUserExist(uname);
+		response.getWriter().print(num);
+		return null;
+	}
+	
+	
 }

@@ -33,11 +33,21 @@ font {
     padding-right:17px;
 }
  </style>
+ 
+<script type="text/javascript">
+	
+	
+function myfunction(){
+    document.getElementById("demo").innerHTML="onclick事件触发";
+   }
+</script> 
+
 </head>
 <body>
 	
 	
-	
+	<h1 id="demo">一个段落</h1>
+    <button onclick="myfunction()" type="button">点击这里</button>
 	
 			<!--
             	描述：菜单栏
@@ -51,10 +61,7 @@ font {
 				</div>
 				<div class="col-md-3" style="padding-top:20px">
 					<ol class="list-inline">
-						<li><a href="${pageContext.request.contextPath}/jsp/login.jsp">登录</a></li>
-						<li><a href="${pageContext.request.contextPath}/jsp/register.jsp">注册</a></li>
-						<li><a href="${pageContext.request.contextPath}/jsp/cart.jsp">购物车</a></li>
-						<li><a href="${pageContext.request.contextPath}/jsp/order_list.jsp">我的订单</a></li>
+						<%@include file="/jsp/header.jsp" %>
 					</ol>
 				</div>
 			</div>
@@ -121,13 +128,17 @@ font {
  <div class="form-group">
     <label for="username" class="col-sm-2 control-label">用户名</label>
     <div class="col-sm-6">
-      <input name="username" type="text" class="form-control" id="username" placeholder="请输入用户名" value="${cookie.rememberCookie.value }"/>
+      <input name="username" type="text" class="form-control" id="uname" placeholder="请输入用户名" value="${cookie.rememberCookie.value }"/>
+      <span id="span1"></span>
+      <a href="${pageContext.request.contextPath}/RegistServlet?method=registUI" hidden="true" id="registHref">注册</a>
     </div>
   </div>
    <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
     <div class="col-sm-6">
       <input name="password" type="password" class="form-control" id="inputPassword3" placeholder="请输入密码">
+      <input type="button" id="fwe" value="dd"/>
+      
     </div>
   </div>
    <div class="form-group">
@@ -160,6 +171,7 @@ font {
     </div>
   </div>
 </form>
+<button onclick="fww">fww</button>
 </div>			
 	</div>
 </div>
@@ -185,4 +197,40 @@ font {
 		<div style="text-align: center;margin-top: 5px;margin-bottom:20px;">
 			Copyright &copy; 2005-2016 传智商城 版权所有
 		</div>
-</body></html>
+		
+	<!-- <script type="text/javascript">
+	function fww() {
+		alert("fww");
+	}
+	$(function(){
+		
+		alert("fwe2");
+		$("#fwe").click(function(){
+			alert("click");
+		});
+		$("#uname").blur(function(){
+			//获得用户名
+			alert('few');
+			var val = $(this).val();
+			console.log(val);
+			if (val.length > 0) {
+				var url = "${pageContext.request.contextPath}/UserServlet";
+				var params = ("method":"checkUsername","username":val);
+				$.post(url, params, function(data) {
+					if (data == 1) {
+						$("#span1").html("用户名可以使用").css("color","#0f0");
+						$("#registHref").attr("hidden", false);
+					} else if (data == 2) {
+						$("#span1").html("用户名已被注册").css("color","#0f0");
+						$("#registHref").attr("hidden", true);
+					}
+				});
+			}
+		});
+	});
+</script>	 -->
+
+</body>
+
+
+</html>

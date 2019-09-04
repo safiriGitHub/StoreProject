@@ -10,4 +10,5 @@ public interface UserDao {
 	
 	User loginUser(String username, String password) throws SQLException;
 	
+	int findUserExist(String username) throws SQLException;
 }

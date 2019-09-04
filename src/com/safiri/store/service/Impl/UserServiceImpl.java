@@ -33,4 +33,12 @@ public class UserServiceImpl implements UserService{
 		return map;
 	}
 
+	@Override
+	public int findUserExist(String username) throws SQLException {
+		UserDao dao = new UserDaoImpl();
+		
+		return dao.findUserExist(username);
+	}
+	
+	
 }

@@ -15,5 +15,12 @@ public interface UserService {
 	 * @throws SQLException
 	 */
 	Map<String, Object> loginUser(String username,  String password) throws SQLException;
+	
+	/**
+	 * 是否存在用户名 
+	 * @param username
+	 * @return 0不存在 >0存在
+	 */
+	int findUserExist(String username) throws SQLException;
 
 }
