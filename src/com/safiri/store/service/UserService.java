@@ -21,6 +21,6 @@ public interface UserService {
 	 * @param username
 	 * @return 0不存在 >0存在
 	 */
-	int findUserExist(String username) throws SQLException;
-
+	long findUserExist(String username) throws SQLException;
+	
 }

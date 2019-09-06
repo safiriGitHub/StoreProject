@@ -31,11 +31,20 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 
-	@Override
-	public int findUserExist(String username) throws SQLException {
+	public long findUserExist(String username) throws SQLException {
 		String sql = "select count(*) from user where username=?";
 		QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
-		return (int) runner.query(sql, new ScalarHandler(), username);
+		Object query = runner.query(sql, new ScalarHandler(), username);
+		return (Long)query;
+				
+//				 object类型转换为int类型：
+//				 1.如果object是byte,short,int,char类型生成的，那么不用转换直接赋值就ok了。
+//				 2.如果object是字符串类型生成的，先把object转换为String类型的，再把String类型转换为int类型。
+//				 例如.
+//				 String myInt="123";
+//				  Object os=myInt;
+//				  int b=Integer.parseInt((String)os);//还可以os.toString()
+//				 3.如果object是float,double,long类型生成的，思路和上面一样，先把object转换为相应的数据类型，然后再转换为int类型。
 	}
 
 }

@@ -73,7 +73,7 @@ public class UserServlet extends BaseServlet {
 		
 		String uname = request.getParameter("username");
 		UserService service = new UserServiceImpl();
-		int num = service.findUserExist(uname);
+		long num = service.findUserExist(uname);
 		response.getWriter().print(num);
 		return null;
 	}

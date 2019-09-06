@@ -9,3 +9,4 @@ function openWindow(sHref,strWidth,strHeight) {
   var openerobj= window.open(sHref,'newwin',strRef,false);
   openerobj.focus();
 }
+

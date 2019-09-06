@@ -18,7 +18,7 @@
 		<div class="container">
 
 			<%--包含导航条 --%>
-			<%-- <%@include file="/jsp/header.jsp" %> --%>
+			<%@include file="/jsp/header.jsp" %>
 
 			<div class="container">
 				<div class="main_con">
@@ -47,7 +47,7 @@
 
 		</div>
 		<%--页脚 --%>
-		<%-- <%@include file="footer.jsp" %> --%>
+		<%@include file="footer.jsp" %>
 
 	</body>
 
